@@ -28,7 +28,7 @@ library(ggraph)
 library(rtweet)
 library(instaR)
 
-query <- "string"
+query <- "name"
 start <- '2020-04-01'
 stop <- '2020-04-29'
 
