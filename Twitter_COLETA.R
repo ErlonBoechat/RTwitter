@@ -28,12 +28,12 @@ library(ggraph)
 library(rtweet)
 library(instaR)
 
-query <- "Mandetta"
+query <- "string"
 start <- '2020-04-01'
 stop <- '2020-04-29'
 
 # since = start, until = stop
-setup_twitter_oauth('JsUjeSy9a4IFEcE4Zp35hebvK', 'cHvh3KO2sxVZir58YT1GX5Qq3pSO64iDLWSZeCVx3DIynzfWme', '29605172-Mmk7AL4YGZAiSYVrnsVf6BEexgy2js6xn8vR1fjA9', '56mfYqTLIsBHqkQjAszya886cRnaDHEV33s1p506UbT9j')
+setup_twitter_oauth('xxxxxx', 'xxxxx', 'xxxxxxx', 'xxxxxxxx')
 
 # coleta <- searchTwitter(query, lang='pt-br', n = 5000, retryOnRateLimit=1)
 coleta.vitoria_80 <- searchTwitter(query, lang='pt-br', n = 1000000, geocode='-20.2965565,-40.3039501,80km',retryOnRateLimit=100, since=start, until=stop)
@@ -64,7 +64,7 @@ coleta.teresina_80 <- searchTwitter(query, lang='pt-br', n = 1000000, geocode='-
 coleta.palmas_80 <- searchTwitter(query, lang='pt-br', n = 1000000, geocode='-10.250463,-48.325070,80km',retryOnRateLimit=100, since=start, until=stop)
 coleta.goiania_80 <- searchTwitter(query, lang='pt-br', n = 100000, geocode='-16.688244,-49.265367,80km',retryOnRateLimit=100, since=start, until=stop)
 
-# ============ Por Capitais: União e transformação de matrizes, criação de dataframe e loading ===================
+# ============ Por Capitais: UniÃ£o e transformaÃ§Ã£o de matrizes, criaÃ§Ã£o de dataframe e loading ===================
 
 # transformando as listas coletadas em df
 df.coleta.vitoria <- twListToDF(coleta.vitoria_80)
@@ -95,7 +95,7 @@ df.coleta.teresina <- twListToDF(coleta.teresina_80)
 df.coleta.palmas <- twListToDF(coleta.palmas_80)
 df.coleta.goiania <- twListToDF(coleta.goiania_80)
 
-# criando vetor "sessão" com ordem numérica crescente
+# criando vetor "sessÃ£o" com ordem numÃ©rica crescente
 df.coleta.vitoria$sessao <- seq.int(nrow(df.coleta.vitoria))
 df.coleta.rio$sessao <- seq.int(nrow(df.coleta.rio))
 df.coleta.sp$sessao <- seq.int(nrow(df.coleta.sp)) 
@@ -232,10 +232,10 @@ query <- df.union$query
 # criando uma matriz com os vetores separados 
 transf <- cbind(user,repli_to,post,date,hour,likes,rts,engagement,UF,is_rt,txt_incompl,query)
 
-# transformando a matriz em dataframe para carga (write_csv não aceita matriz)
+# transformando a matriz em dataframe para carga (write_csv nÃ£o aceita matriz)
 df.transf <- as.data.frame(transf)
 
-# Sequência de vericação
+# SequÃªncia de vericaÃ§Ã£o
 colnames(df.transf) # colunas
 dim(df.transf) # tamanho do dataframe
 summary(df.transf)
@@ -291,7 +291,7 @@ influencers
   df.transf$user[857]
 sort(df.transf$engagement, decreasing = TRUE)
 
-# ========================== Coleta Única ========================================================================
+# ========================== Coleta Ãšnica ========================================================================
 
 
 
@@ -321,7 +321,7 @@ followers <- df.coleta.rtweet$followers_count
 post <- df.coleta.rtweet$text
 hashtags <- df.coleta.rtweet$hashtags
 data <- df.coleta.rtweet$created_at %>%
-  format("%d/%m/%y") # resolvido problema com Data: classe POSIXt - transforma-se em número após carga em csv / pesquisa: https://astrostatistics.psu.edu/su07/R/html/base/html/DateTimeClasses.html / solução: https://stackoverflow.com/questions/51599365/write-csv-in-r-is-converting-my-dates-into-a-10-digit-integer
+  format("%d/%m/%y") # resolvido problema com Data: classe POSIXt - transforma-se em nÃºmero apÃ³s carga em csv / pesquisa: https://astrostatistics.psu.edu/su07/R/html/base/html/DateTimeClasses.html / soluÃ§Ã£o: https://stackoverflow.com/questions/51599365/write-csv-in-r-is-converting-my-dates-into-a-10-digit-integer
 hora <- df.coleta.rtweet$created_at %>%
   format("%H:%M:%S")
 curtidas <- df.coleta.rtweet$favorite_count
@@ -339,7 +339,7 @@ df.interacoesDF <- as.data.frame(df.interacoes)
 armazena_df.interacoesDF <- "C:/Users/erlon/OneDrive/R/Data/Roni7/280519_2.csv"
 write_csv(x = df.interacoesDF, path = armazena_df.interacoesDF)
 
-# tentando gerar gráfico
+# tentando gerar grÃ¡fico
 interacoes.plot <- df.interacoesDF$total_interacoes
 data.plot <- df.interacoesDF$data
 plot(data.plot,interacoes.plot)
