@@ -28,12 +28,12 @@ library(ggraph)
 library(rtweet)
 library(instaR)
 
-query <- "name"
+query <- "Pesquisa"
 start <- '2020-04-01'
 stop <- '2020-04-29'
 
 # since = start, until = stop
-setup_twitter_oauth('xxxxxx', 'xxxxx', 'xxxxxxx', 'xxxxxxxx')
+setup_twitter_oauth('xx', 'xx', 'xx', 'xx') # credenciais
 
 # coleta <- searchTwitter(query, lang='pt-br', n = 5000, retryOnRateLimit=1)
 coleta.vitoria_80 <- searchTwitter(query, lang='pt-br', n = 1000000, geocode='-20.2965565,-40.3039501,80km',retryOnRateLimit=100, since=start, until=stop)
